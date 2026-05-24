@@ -1607,11 +1607,27 @@ document.addEventListener('keydown', e => {
   if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); openAdmin(); }
 });
 
+// ====== ADMIN ACCESS FROM MOBILE ======
+// 1) Via URL hash: /index.html#admin
+window.addEventListener('hashchange', checkAdminHash);
+function checkAdminHash() {
+  if (window.location.hash === '#admin') openAdmin();
+}
+// 2) Tap 5 veces en el logo del header
+let logoTaps = 0; let logoTimer;
+document.querySelector('.header-logo')?.addEventListener('click', (e) => {
+  logoTaps++;
+  clearTimeout(logoTimer);
+  logoTimer = setTimeout(() => logoTaps = 0, 1000);
+  if (logoTaps >= 5) { logoTaps = 0; openAdmin(); }
+});
+
 // ====== INIT ======
 document.addEventListener('DOMContentLoaded', () => {
   renderAll();
   startSlider();
   if (!localStorage.getItem('bichitos_cookies')) setTimeout(() => document.getElementById('cookies-bar').classList.add('show'), 1000);
+  checkAdminHash();
 });
 </script>
 </body>
