@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BICHITOS Shop - Dale a tu bichito lo que se merece. Alimentos y accesorios para perros y gatos en Gran Mendoza, Argentina.">
+<meta name="theme-color" content="#7C3AED">
+<title>BICHITOS Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple-deep: #5B21B6;
+  --purple-primary: #7C3AED;
+  --purple-medium: #8B5CF6;
+  --purple-light: #A78BFA;
+  --purple-pale: #DDD6FE;
+  --purple-bg: #F5F3FF;
+  --coral: #FF6B6B;
+  --coral-light: #FFE4E4;
+  --teal: #38B2AC;
+  --teal-light: #E6FFFA;
+  --yellow: #F6AD55;
+  --yellow-light: #FEF3C7;
+  --pink: #EC4899;
+  --green: #10B981;
+  --cream: #FFFBEB;
+  --white: #FFFFFF;
+  --dark: #1F1A3A;
+  --dark-soft: #2D2B55;
+  --gray: #718096;
+  --gray-light: #E2E8F0;
+  --gray-bg: #F8F7FC;
+  --font-display: 'Fredoka', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+  --shadow: 0 4px 20px rgba(124,58,237,0.10);
+  --shadow-lg: 0 8px 40px rgba(124,58,237,0.15);
+  --shadow-heavy: 0 12px 50px rgba(91,33,182,0.20);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--dark);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+input, textarea, select { font-family: inherit; font-size: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); line-height: 1.2; }
+
+/* Img placeholder */
+.img-placeholder {
+  width: 100%; display: flex; align-items: center; justify-content: center;
+  text-align: center; font-family: var(--font-display); font-size: 0.85rem;
+  color: rgba(255,255,255,0.85); padding: 20px; border-radius: var(--radius-md);
+  position: relative; overflow: hidden; min-height: 180px;
+}
+.img-placeholder span { position: relative; z-index: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.2); font-weight: 600; }
+
+/* Header */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 12px 0; transition: var(--transition); background: transparent;
+}
+.header.scrolled {
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); box-shadow: var(--shadow); padding: 8px 0;
+}
+.header .container { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; }
+.header-logo {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+  color: var(--white); transition: var(--transition); display: flex; align-items: center; gap: 8px;
+}
+.header.scrolled .header-logo { color: var(--purple-primary); }
+.header-logo-icon {
+  width: 36px; height: 36px; border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--purple-primary), var(--pink));
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: white;
+}
+.header-nav { display: none; align-items: center; gap: 8px; }
+.header-nav a {
+  padding: 8px 16px; border-radius: var(--radius-full); font-weight: 600;
+  font-size: 0.9rem; color: rgba(255,255,255,0.9); transition: var(--transition); position: relative;
+}
+.header.scrolled .header-nav a { color: var(--dark); }
+.header-nav a:hover, .header-nav a.active { background: rgba(255,255,255,0.15); color: white; }
+.header.scrolled .header-nav a:hover, .header.scrolled .header-nav a.active { background: var(--purple-pale); color: var(--purple-deep); }
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.header-actions button {
+  width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: 1.2rem; color: rgba(255,255,255,0.9);
+  transition: var(--transition); position: relative; background: rgba(255,255,255,0.1);
+}
+.header.scrolled .header-actions button { color: var(--dark); background: var(--gray-bg); }
+.header-actions button:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+.header.scrolled .header-actions button:hover { background: var(--purple-pale); color: var(--purple-primary); }
+.badge {
+  position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px;
+  border-radius: 50%; background: var(--coral); color: white; font-size: 0.65rem;
+  font-weight: 700; display: flex; align-items: center; justify-content: center;
+  padding: 0 4px; border: 2px solid var(--white);
+}
+.header.scrolled .badge { border-color: rgba(255,255,255,0.95); }
+.hamburger { display: flex; flex-direction: column; gap: 4px; width: 28px; cursor: pointer; }
+.hamburger span { height: 3px; border-radius: 3px; background: rgba(255,255,255,0.9); transition: var(--transition); }
+.header.scrolled .hamburger span { background: var(--dark); }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-menu {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--dark);
+  z-index: 999; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 8px; opacity: 0; pointer-events: none; transition: var(--transition);
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a {
+  font-family: var(--font-display); font-size: 1.8rem; color: var(--white);
+  padding: 12px 24px; border-radius: var(--radius-md); transition: var(--transition);
+}
+.mobile-menu a:hover { background: rgba(255,255,255,0.1); }
+
+/* Hero */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; background: var(--purple-deep); overflow: hidden; }
+.hero-slide { position: absolute; inset: 0; display: flex; align-items: center; opacity: 0; transition: opacity 0.8s ease; }
+.hero-slide.active { opacity: 1; }
+.hero .container { position: relative; z-index: 2; width: 100%; padding: 120px 20px 80px; }
+.hero-content { max-width: 600px; }
+.hero-tag {
+  display: inline-block; padding: 6px 18px; border-radius: var(--radius-full);
+  background: rgba(255,255,255,0.15); color: var(--white); font-size: 0.85rem;
+  font-weight: 600; margin-bottom: 16px; backdrop-filter: blur(10px);
+}
+.hero-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--white); margin-bottom: 16px; line-height: 1.1; }
+.hero-subtitle { font-size: 1.05rem; color: rgba(255,255,255,0.8); margin-bottom: 28px; line-height: 1.5; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.95rem; transition: var(--transition); font-family: var(--font-body); }
+.btn-primary { background: var(--white); color: var(--purple-deep); }
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,255,255,0.3); }
+.btn-outline { border: 2px solid rgba(255,255,255,0.3); color: var(--white); }
+.btn-outline:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); }
+.btn-purple { background: var(--purple-primary); color: var(--white); }
+.btn-purple:hover { transform: scale(1.05); box-shadow: var(--shadow-lg); }
+.btn-coral { background: var(--coral); color: var(--white); }
+.btn-coral:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,107,107,0.3); }
+.btn-sm { padding: 10px 20px; font-size: 0.85rem; }
+.hero-dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3; }
+.hero-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: var(--transition); border: 2px solid transparent; }
+.hero-dot.active { background: var(--white); border-color: var(--white); transform: scale(1.2); }
+.hero-decoration { position: absolute; border-radius: 50%; opacity: 0.1; pointer-events: none; }
+.hero-decoration:nth-child(1) { width: 500px; height: 500px; background: var(--purple-light); top: -100px; right: -150px; animation: float 8s ease-in-out infinite; }
+.hero-decoration:nth-child(2) { width: 300px; height: 300px; background: var(--pink); bottom: -50px; left: -100px; animation: float 10s ease-in-out infinite reverse; }
+.hero-decoration:nth-child(3) { width: 200px; height: 200px; background: var(--yellow); top: 40%; right: 10%; animation: float 6s ease-in-out infinite; }
+
+/* Sections */
+.section { padding: 70px 0; }
+.section-header { text-align: center; margin-bottom: 40px; }
+.section-tag { display: inline-block; padding: 4px 14px; border-radius: var(--radius-full); background: var(--purple-pale); color: var(--purple-deep); font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.section-title { font-family: var(--font-display); font-size: 2rem; color: var(--dark); margin-bottom: 10px; }
+.section-desc { color: var(--gray); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+/* Categories */
+.categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.cat-card { border-radius: var(--radius-lg); padding: 24px 16px; text-align: center; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.cat-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--shadow-lg); }
+.cat-icon { font-size: 2.2rem; line-height: 1; }
+.cat-name { font-family: var(--font-display); font-size: 1rem; color: var(--white); }
+.cat-count { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+
+/* Products */
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.product-card { border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); position: relative; }
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.product-card .img-placeholder { min-height: 150px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.product-badge { position: absolute; top: 10px; left: 10px; padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.7rem; font-weight: 700; z-index: 2; }
+.product-badge.destacado { background: var(--yellow); color: var(--dark); }
+.product-wishlist { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; transition: var(--transition); z-index: 2; }
+.product-wishlist:hover { transform: scale(1.1); }
+.product-wishlist.active { color: var(--coral); }
+.product-info { padding: 14px 16px 16px; }
+.product-category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--purple-light); font-weight: 700; margin-bottom: 2px; }
+.product-name { font-family: var(--font-display); font-size: 0.95rem; color: var(--dark); margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.product-price { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.price-current { font-family: var(--font-display); font-size: 1.3rem; color: var(--purple-deep); }
+.product-actions { display: flex; gap: 8px; }
+.product-actions .btn { flex: 1; justify-content: center; padding: 10px 16px; font-size: 0.8rem; }
+
+/* Shop controls */
+.shop-controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.shop-search { position: relative; flex: 1; }
+.shop-search input { width: 100%; padding: 12px 16px 12px 44px; border: 2px solid var(--gray-light); border-radius: var(--radius-full); font-size: 0.95rem; transition: var(--transition); background: var(--white); }
+.shop-search input:focus { outline: none; border-color: var(--purple-primary); box-shadow: 0 0 0 4px var(--purple-pale); }
+.shop-search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.1rem; color: var(--gray); }
+.shop-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter-btn { padding: 8px 18px; border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem; transition: var(--transition); border: 2px solid var(--gray-light); background: var(--white); color: var(--dark); }
+.filter-btn:hover { border-color: var(--purple-light); }
+.filter-btn.active { background: var(--purple-primary); border-color: var(--purple-primary); color: var(--white); }
+.shop-sort { padding: 10px 18px; border: 2px solid var(--gray-light); border-radius: var(--radius-full); font-weight: 600; font-size: 0.85rem; background: var(--white); color: var(--dark); cursor: pointer; }
+
+/* Blog */
+.blog-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.blog-card { border-radius: var(--radius-lg); overflow: hidden; background: var(--white); box-shadow: var(--shadow); transition: var(--transition); cursor: pointer; }
+.blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.blog-card .img-placeholder { min-height: 180px; border-radius: 0; }
+.blog-card-body { padding: 20px; }
+.blog-card-tag { display: inline-block; padding: 3px 10px; border-radius: var(--radius-full); font-size: 0.7rem; font-weight: 700; background: var(--purple-pale); color: var(--purple-deep); margin-bottom: 8px; }
+.blog-card-title { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; color: var(--dark); }
+.blog-card-excerpt { font-size: 0.9rem; color: var(--gray); margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.blog-card-meta { font-size: 0.8rem; color: var(--gray); display: flex; align-items: center; gap: 12px; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+.about-image .img-placeholder { min-height: 300px; border-radius: var(--radius-lg); }
+.about-text h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; color: var(--dark); }
+.about-text p { color: var(--gray); margin-bottom: 16px; line-height: 1.7; }
+.values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
+.value-item { padding: 16px; border-radius: var(--radius-md); background: var(--purple-bg); text-align: center; }
+.value-icon { font-size: 1.5rem; margin-bottom: 6px; }
+.value-title { font-family: var(--font-display); font-size: 0.9rem; color: var(--purple-deep); }
+
+/* Reviews */
+.reviews-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.review-card { padding: 20px; border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow); }
+.review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.review-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: white; }
+.review-info h4 { font-size: 0.95rem; font-weight: 700; }
+.review-info span { font-size: 0.75rem; color: var(--gray); }
+.review-stars { color: var(--yellow); font-size: 0.9rem; margin-bottom: 6px; }
+.review-text { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+/* Calculator */
+.calculator-card { max-width: 500px; margin: 0 auto; padding: 32px 24px; border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow-lg); }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; color: var(--dark); }
+.form-group select, .form-group input { width: 100%; padding: 12px 16px; border: 2px solid var(--gray-light); border-radius: var(--radius-md); font-size: 0.95rem; transition: var(--transition); background: var(--white); }
+.form-group select:focus, .form-group input:focus { outline: none; border-color: var(--purple-primary); box-shadow: 0 0 0 4px var(--purple-pale); }
+.calc-result { margin-top: 20px; padding: 20px; border-radius: var(--radius-md); background: var(--purple-bg); text-align: center; }
+.calc-result-amount { font-family: var(--font-display); font-size: 2.5rem; color: var(--purple-deep); }
+.calc-result-label { font-size: 0.9rem; color: var(--gray); margin-top: 4px; }
+
+/* Quiz */
+.quiz-card { max-width: 550px; margin: 0 auto; padding: 32px 24px; border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow-lg); }
+.quiz-progress { height: 6px; background: var(--gray-light); border-radius: 3px; margin-bottom: 24px; overflow: hidden; }
+.quiz-progress-bar { height: 100%; background: linear-gradient(90deg, var(--purple-primary), var(--pink)); border-radius: 3px; transition: width 0.5s ease; }
+.quiz-step { display: none; }
+.quiz-step.active { display: block; }
+.quiz-question { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 16px; color: var(--dark); }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { padding: 14px 18px; border: 2px solid var(--gray-light); border-radius: var(--radius-md); font-weight: 600; transition: var(--transition); cursor: pointer; text-align: left; }
+.quiz-option:hover { border-color: var(--purple-light); background: var(--purple-bg); }
+.quiz-option.selected { border-color: var(--purple-primary); background: var(--purple-pale); color: var(--purple-deep); }
+.quiz-result { display: none; text-align: center; }
+.quiz-result.show { display: block; }
+.quiz-result-icon { font-size: 3rem; margin-bottom: 12px; }
+.quiz-result-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--purple-deep); margin-bottom: 8px; }
+.quiz-result-text { color: var(--gray); margin-bottom: 20px; }
+
+/* Sidebar */
+.sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2000; opacity: 0; pointer-events: none; transition: var(--transition); }
+.sidebar-overlay.open { opacity: 1; pointer-events: all; }
+.sidebar { position: fixed; top: 0; right: 0; bottom: 0; width: 92%; max-width: 400px; background: var(--white); z-index: 2001; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
+.sidebar.open { transform: translateX(0); }
+.sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 20px; border-bottom: 1px solid var(--gray-light); }
+.sidebar-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--dark); }
+.sidebar-close { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: var(--gray-bg); transition: var(--transition); }
+.sidebar-close:hover { background: var(--gray-light); }
+.sidebar-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+.sidebar-empty { text-align: center; padding: 40px 20px; color: var(--gray); }
+.sidebar-empty-icon { font-size: 3rem; margin-bottom: 12px; opacity: 0.4; }
+.cart-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--gray-light); }
+.cart-item .img-placeholder { width: 70px; min-height: 70px; border-radius: var(--radius-sm); flex-shrink: 0; font-size: 0.5rem; padding: 8px; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-family: var(--font-display); font-size: 0.85rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-price { font-weight: 700; font-size: 0.95rem; color: var(--purple-deep); }
+.cart-item-qty { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.qty-btn { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; background: var(--gray-bg); transition: var(--transition); font-size: 0.9rem; }
+.qty-btn:hover { background: var(--purple-pale); }
+.cart-item-qty span { font-weight: 700; min-width: 20px; text-align: center; }
+.cart-item-remove { color: var(--gray); cursor: pointer; transition: var(--transition); font-size: 0.8rem; padding: 4px; }
+.cart-item-remove:hover { color: var(--coral); }
+.sidebar-footer { padding: 20px; border-top: 1px solid var(--gray-light); }
+.cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.cart-total-label { font-weight: 700; font-size: 1.1rem; }
+.cart-total-amount { font-family: var(--font-display); font-size: 1.4rem; color: var(--purple-deep); }
+.cart-shipping-note { font-size: 0.8rem; color: var(--green); text-align: center; margin-top: 8px; }
+.checkout-btn { width: 100%; padding: 14px; border-radius: var(--radius-full); background: var(--purple-primary); color: white; font-weight: 700; font-size: 1rem; transition: var(--transition); }
+.checkout-btn:hover { background: var(--purple-deep); transform: scale(1.02); }
+
+/* Newsletter */
+.newsletter { background: linear-gradient(135deg, var(--purple-deep), var(--purple-primary)); padding: 60px 0; text-align: center; position: relative; overflow: hidden; }
+.newsletter h2 { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); margin-bottom: 10px; }
+.newsletter p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+.newsletter-form { display: flex; flex-direction: column; gap: 10px; max-width: 450px; margin: 0 auto; }
+.newsletter-form input { padding: 14px 20px; border-radius: var(--radius-full); border: none; font-size: 0.95rem; flex: 1; }
+.newsletter-form input:focus { outline: none; box-shadow: 0 0 0 4px rgba(255,255,255,0.3); }
+.newsletter-form button { padding: 14px 32px; border-radius: var(--radius-full); background: var(--coral); color: white; font-weight: 700; font-size: 0.95rem; transition: var(--transition); white-space: nowrap; }
+.newsletter-form button:hover { transform: scale(1.05); }
+
+/* Footer */
+.footer { background: var(--dark); padding: 50px 0 0; color: rgba(255,255,255,0.7); }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.footer h3, .footer h4 { font-family: var(--font-display); color: var(--white); margin-bottom: 16px; }
+.footer-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); margin-bottom: 10px; }
+.footer-desc { font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); transition: var(--transition); font-size: 1.1rem; }
+.footer-social a:hover { background: var(--purple-primary); transform: translateY(-2px); }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: rgba(255,255,255,0.6); font-size: 0.9rem; transition: var(--transition); display: flex; align-items: center; gap: 6px; }
+.footer-links a:hover { color: var(--purple-light); padding-left: 4px; }
+.footer-contact p { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; margin-bottom: 10px; }
+.footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+
+/* WhatsApp float */
+.whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 999; transition: var(--transition); cursor: pointer; }
+.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+
+/* Cookies */
+.cookies-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); color: rgba(255,255,255,0.8); padding: 16px 20px; z-index: 9999; transform: translateY(100%); transition: transform 0.5s ease; }
+.cookies-bar.show { transform: translateY(0); }
+.cookies-content { display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
+.cookies-content p { font-size: 0.85rem; }
+.cookies-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.cookies-btn { padding: 8px 20px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.85rem; transition: var(--transition); }
+.cookies-btn-accept { background: var(--purple-primary); color: white; }
+.cookies-btn-accept:hover { background: var(--purple-deep); }
+.cookies-btn-decline { background: rgba(255,255,255,0.1); color: white; }
+.cookies-btn-decline:hover { background: rgba(255,255,255,0.2); }
+
+/* Admin */
+.admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: var(--transition); padding: 20px; }
+.admin-overlay.open { opacity: 1; pointer-events: all; }
+.admin-modal { width: 100%; max-width: 700px; max-height: 85vh; background: var(--white); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.admin-overlay.open .admin-modal { transform: scale(1); }
+.admin-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--gray-light); background: var(--purple-deep); color: white; }
+.admin-header h2 { font-family: var(--font-display); font-size: 1.2rem; }
+.admin-close { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.2); color: white; font-size: 1.2rem; transition: var(--transition); }
+.admin-close:hover { background: rgba(255,255,255,0.3); }
+.admin-body { flex: 1; overflow-y: auto; padding: 24px; }
+.admin-section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-light); }
+.admin-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.admin-section h3 { font-family: var(--font-display); font-size: 1rem; color: var(--purple-deep); margin-bottom: 14px; }
+.admin-field { margin-bottom: 12px; }
+.admin-field label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--gray); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.admin-field input, .admin-field textarea { width: 100%; padding: 10px 14px; border: 2px solid var(--gray-light); border-radius: var(--radius-sm); font-size: 0.9rem; transition: var(--transition); }
+.admin-field input:focus, .admin-field textarea:focus { outline: none; border-color: var(--purple-primary); }
+.admin-field textarea { min-height: 60px; resize: vertical; }
+.admin-field input[type="color"] { height: 44px; padding: 4px; cursor: pointer; }
+.admin-product-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; padding: 8px; border-radius: var(--radius-sm); background: var(--gray-bg); }
+.admin-product-row input { flex: 1; }
+.admin-product-row .admin-prod-name { flex: 2; }
+.admin-product-row .admin-prod-price { flex: 0 0 100px; }
+.admin-footer { display: flex; gap: 10px; padding: 16px 24px; border-top: 1px solid var(--gray-light); justify-content: flex-end; }
+.admin-save-btn { padding: 10px 24px; border-radius: var(--radius-full); background: var(--purple-primary); color: white; font-weight: 700; transition: var(--transition); }
+.admin-save-btn:hover { background: var(--purple-deep); }
+.admin-cancel-btn { padding: 10px 24px; border-radius: var(--radius-full); background: var(--gray-bg); font-weight: 600; transition: var(--transition); }
+.admin-cancel-btn:hover { background: var(--gray-light); }
+.admin-login { text-align: center; padding: 40px 20px; }
+.admin-login-icon { font-size: 3rem; margin-bottom: 12px; }
+.admin-login h3 { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 8px; }
+.admin-login p { color: var(--gray); font-size: 0.9rem; margin-bottom: 20px; }
+.admin-login input { padding: 12px 18px; border: 2px solid var(--gray-light); border-radius: var(--radius-md); font-size: 1rem; width: 100%; max-width: 280px; margin-bottom: 12px; text-align: center; }
+.admin-login input:focus { outline: none; border-color: var(--purple-primary); }
+.admin-login-error { color: var(--coral); font-size: 0.85rem; margin-top: 8px; display: none; }
+
+/* Views */
+.view { display: none; }
+.view.active { display: block; }
+
+/* Toast */
+.toast { position: fixed; bottom: 90px; right: 20px; padding: 12px 20px; border-radius: var(--radius-md); background: var(--dark); color: white; font-weight: 600; font-size: 0.9rem; z-index: 5000; opacity: 0; transform: translateY(20px); transition: var(--transition); pointer-events: none; box-shadow: var(--shadow-heavy); }
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* Back to top */
+.back-top { position: fixed; bottom: 90px; left: 20px; width: 44px; height: 44px; border-radius: 50%; background: var(--purple-primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; z-index: 998; opacity: 0; pointer-events: none; transition: var(--transition); box-shadow: var(--shadow-lg); }
+.back-top.show { opacity: 1; pointer-events: all; }
+.back-top:hover { transform: translateY(-3px); }
+
+/* Animations */
+@keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { transform: scale(1.08); } 70% { transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.animate-in { animation: fadeUp 0.6s ease forwards; }
+.animate-bounce-in { animation: bounceIn 0.6s var(--bounce) forwards; }
+
+/* Responsive */
+@media (min-width: 768px) {
+  .hamburger { display: none; }
+  .header-nav { display: flex; }
+  .hero-title { font-size: 3.5rem; }
+  .categories-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .product-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .newsletter-form { flex-direction: row; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .shop-controls { flex-direction: row; align-items: center; }
+  .about-grid { grid-template-columns: 1fr 1fr; align-items: center; }
+  .values-grid { grid-template-columns: repeat(4, 1fr); }
+  .cat-card { min-height: 160px; }
+}
+@media (min-width: 1024px) {
+  .hero-title { font-size: 4.5rem; }
+  .categories-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .product-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .blog-grid { grid-template-columns: repeat(3, 1fr); }
+  .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .section { padding: 100px 0; }
+  .cat-card { min-height: 180px; }
+  .cat-card:hover .cat-icon { transform: scale(1.2) rotate(-5deg); }
+  .cat-icon { transition: transform var(--bounce); }
+}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container">
+    <a class="header-logo" href="#" onclick="showView('home')">
+      <div class="header-logo-icon" id="logo-icon">🐾</div>
+      <span id="store-name-header">BICHITOS Shop</span>
+    </a>
+    <nav class="header-nav" id="header-nav">
+      <a href="#" onclick="showView('home')" class="active" data-view="home">Inicio</a>
+      <a href="#" onclick="showView('shop')" data-view="shop">Tienda</a>
+      <a href="#" onclick="showView('blog')" data-view="blog">Blog</a>
+      <a href="#" onclick="showView('about')" data-view="about">Nosotros</a>
+      <a href="#" onclick="showView('calculator')" data-view="calculator">Calculadora</a>
+      <a href="#" onclick="showView('quiz')" data-view="quiz">Quiz</a>
+    </nav>
+    <div class="header-actions">
+      <button onclick="toggleSearch()" aria-label="Buscar">🔍</button>
+      <button onclick="openWishlist()" aria-label="Lista de deseos">❤ <span class="badge" id="wishlist-badge">0</span></button>
+      <button onclick="openCart()" aria-label="Carrito">🛒 <span class="badge" id="cart-badge">0</span></button>
+      <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="showView('home');closeMobileMenu()">🏠 Inicio</a>
+  <a href="#" onclick="showView('shop');closeMobileMenu()">🛍️ Tienda</a>
+  <a href="#" onclick="showView('blog');closeMobileMenu()">📝 Blog</a>
+  <a href="#" onclick="showView('about');closeMobileMenu()">💜 Nosotros</a>
+  <a href="#" onclick="showView('calculator');closeMobileMenu()">📊 Calculadora</a>
+  <a href="#" onclick="showView('quiz');closeMobileMenu()">❓ Quiz</a>
+  <a href="#" onclick="closeMobileMenu();openCart()">🛒 Carrito</a>
+  <a href="#" onclick="closeMobileMenu();openWishlist()">❤ Deseos</a>
+</div>
+
+<!-- SEARCH -->
+<div class="sidebar-overlay" id="search-overlay" onclick="toggleSearch()"></div>
+<div style="position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:2001;width:92%;max-width:500px;display:none;" id="search-bar">
+  <div class="shop-search" style="box-shadow:var(--shadow-lg);border-radius:var(--radius-full);">
+    <span class="shop-search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="Buscá productos, marcas..." oninput="debouncedSearch(this.value)" style="border-radius:var(--radius-full);padding:14px 16px 14px 48px;width:100%;border:2px solid var(--purple-primary);font-size:1rem;">
+  </div>
+  <div id="search-results" style="background:white;border-radius:var(--radius-md);margin-top:8px;box-shadow:var(--shadow-lg);max-height:400px;overflow-y:auto;display:none;"></div>
+</div>
+
+<!-- MAIN VIEWS -->
+<main>
+
+<!-- HOME -->
+<section class="view active" id="view-home">
+
+<div class="hero" id="hero">
+  <div class="hero-decoration"></div>
+  <div class="hero-decoration"></div>
+  <div class="hero-decoration"></div>
+  <div class="hero-slide active" data-slide="0" style="background:linear-gradient(135deg, #5B21B6 0%, #7C3AED 40%, #EC4899 100%);">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag" id="hero-tag-0">🐶 🐱 ENVÍO GRATIS</div>
+        <h1 class="hero-title" id="hero-title-0">Dale a tu bichito lo que se merece</h1>
+        <p class="hero-subtitle" id="hero-sub-0">Alimentos premium, accesorios y todo para la felicidad de tu mascota. Entregas en Gran Mendoza.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#" onclick="showView('shop')">🛍️ Comprar ahora</a>
+          <a class="btn btn-outline" href="#" onclick="showView('calculator')">📊 Calculá su comida</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-slide" data-slide="1" style="background:linear-gradient(135deg, #1E3A5F 0%, #38B2AC 50%, #F6AD55 100%);">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag" id="hero-tag-1">✨ GRAN VARIEDAD</div>
+        <h1 class="hero-title" id="hero-title-1">Todo para perros y gatos</h1>
+        <p class="hero-subtitle" id="hero-sub-1">Juguetes, camas, ropa, accesorios y más. Productos de calidad para mimos de todas las edades.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#" onclick="showView('shop')">🛍️ Ver productos</a>
+          <a class="btn btn-outline" href="#" onclick="showView('quiz')">❓ ¿Qué necesito?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-slide" data-slide="2" style="background:linear-gradient(135deg, #4C1D95 0%, #8B5CF6 40%, #F472B6 100%);">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag" id="hero-tag-2">🎉 NUEVOS INGRESOS</div>
+        <h1 class="hero-title" id="hero-title-2">Las mejores marcas</h1>
+        <p class="hero-subtitle" id="hero-sub-2">Estampa, Vagoneta, Jaspe y muchas más. Siempre los mejores precios de Mendoza.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#" onclick="showView('shop')">🛍️ Ver marcas</a>
+          <a class="btn btn-outline" href="#" onclick="showView('blog')">📝 Tips y consejos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots" id="hero-dots">
+    <div class="hero-dot active" onclick="goToSlide(0)"></div>
+    <div class="hero-dot" onclick="goToSlide(1)"></div>
+    <div class="hero-dot" onclick="goToSlide(2)"></div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" style="background:var(--gray-bg);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Categorías</div>
+      <h2 class="section-title">¿Qué estás buscando?</h2>
+      <p class="section-desc">Explorá por categoría y encontrá lo que tu bichito necesita</p>
+    </div>
+    <div class="categories-grid" id="categories-grid"></div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section" id="section-featured">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Destacados</div>
+      <h2 class="section-title">Los más elegidos</h2>
+      <p class="section-desc">Productos que nuestros clientes aman</p>
+    </div>
+    <div class="product-grid" id="featured-grid"></div>
+    <div style="text-align:center;margin-top:28px;">
+      <a class="btn btn-purple" href="#" onclick="showView('shop')">Ver todos los productos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="section" style="background:var(--purple-bg);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Blog</div>
+      <h2 class="section-title">Consejos para tu bichito</h2>
+      <p class="section-desc">Tips, guías y todo lo que necesitás saber</p>
+    </div>
+    <div class="blog-grid" id="blog-preview-grid"></div>
+    <div style="text-align:center;margin-top:28px;">
+      <a class="btn btn-purple" href="#" onclick="showView('blog')">Ver más artículos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Opiniones</div>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <p class="section-desc">Reseñas reales de la comunidad BICHITOS</p>
+    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="container">
+    <h2>🐾 No te pierdas nada</h2>
+    <p>Recibí ofertas exclusivas, tips y novedades directo a tu correo</p>
+    <form class="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+      <input type="email" placeholder="tu@email.com" required>
+      <button type="submit">Suscribirme 💜</button>
+    </form>
+  </div>
+</section>
+</section>
+
+<!-- SHOP VIEW -->
+<section class="view" id="view-shop">
+  <div style="padding-top:90px;" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Tienda</div>
+        <h2 class="section-title">Nuestros productos</h2>
+        <p class="section-desc">Todo para perros y gatos en un solo lugar</p>
+      </div>
+      <div class="shop-controls">
+        <div class="shop-search">
+          <span class="shop-search-icon">🔍</span>
+          <input type="text" id="shop-search-input" placeholder="Buscá por nombre, marca..." oninput="filterProducts()">
+        </div>
+        <div class="shop-filters" id="shop-filters"></div>
+        <select class="shop-sort" id="shop-sort" onchange="filterProducts()">
+          <option value="default">Ordenar por</option>
+          <option value="price-asc">Menor precio</option>
+          <option value="price-desc">Mayor precio</option>
+          <option value="name">A-Z</option>
+        </select>
+      </div>
+      <div class="product-grid" id="shop-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT DETAIL -->
+<section class="view" id="view-product-detail">
+  <div style="padding-top:90px;" class="section">
+    <div class="container" id="product-detail-container"></div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="view" id="view-blog">
+  <div style="padding-top:90px;" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Blog</div>
+        <h2 class="section-title">Consejos y novedades</h2>
+        <p class="section-desc">Todo lo que necesitás saber para cuidar a tu bichito</p>
+      </div>
+      <div class="blog-grid" id="blog-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG POST -->
+<section class="view" id="view-blog-post">
+  <div style="padding-top:90px;" class="section">
+    <div class="container" id="blog-post-container"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="view" id="view-about">
+  <div style="padding-top:90px;" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Nosotros</div>
+        <h2 class="section-title">Conocé BICHITOS Shop</h2>
+        <p class="section-desc">Una tienda mendocina con amor por los animales</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-image">
+          <div class="img-placeholder" style="background:linear-gradient(135deg, #7C3AED, #EC4899);min-height:350px;">
+            <span>🐾 Nuestro equipo y nuestros bichitos</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3>Somos una familia pet-lover</h3>
+          <p><strong>BICHITOS Shop</strong> nació en Gran Mendoza, Argentina, de la pasión por los animales y las ganas de ofrecer productos de calidad a precios justos. Somos una empresa familiar que entiende que cada mascota es única.</p>
+          <p>Trabajamos con las mejores marcas del mercado para que tu perro o gato reciba siempre lo mejor. Hacemos envíos a todo Gran Mendoza y atendemos de forma personalizada por WhatsApp.</p>
+          <p>Creemos en la alimentación de calidad, los juegos que estimulan y los mimos que fortalecen el vínculo. Por eso seleccionamos cada producto con el mismo cuidado con que elegiríamos para nuestros propios bichitos.</p>
+          <div class="values-grid">
+            <div class="value-item"><div class="value-icon">💜</div><div class="value-title">Amor animal</div></div>
+            <div class="value-item"><div class="value-icon">⭐</div><div class="value-title">Calidad</div></div>
+            <div class="value-item"><div class="value-icon">🤝</div><div class="value-title">Confianza</div></div>
+            <div class="value-item"><div class="value-icon">🚚</div><div class="value-title">Envío rápido</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="view" id="view-calculator">
+  <div style="padding-top:90px;" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Calculadora</div>
+        <h2 class="section-title">Calculá la comida de tu bichito</h2>
+        <p class="section-desc">Sabé cuánto alimento darle según su peso, edad y actividad</p>
+      </div>
+      <div class="calculator-card">
+        <div class="form-group">
+          <label>¿Qué mascota tenés?</label>
+          <select id="calc-pet"><option value="perro">Perro 🐶</option><option value="gato">Gato 🐱</option></select>
+        </div>
+        <div class="form-group">
+          <label>Peso aproximado (kg)</label>
+          <input type="number" id="calc-weight" min="0.5" max="100" step="0.5" value="10" placeholder="Ej: 10">
+        </div>
+        <div class="form-group">
+          <label>Edad</label>
+          <select id="calc-age">
+            <option value="cachorro">Cachorro / Gatito</option>
+            <option value="adulto" selected>Adulto</option>
+            <option value="senior">Senior / Adulto mayor</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nivel de actividad</label>
+          <select id="calc-activity">
+            <option value="baja">Baja (poco ejercicio)</option>
+            <option value="media" selected>Media (paseos diarios)</option>
+            <option value="alta">Alta (muy activo)</option>
+          </select>
+        </div>
+        <button class="btn btn-purple" onclick="calculateFood()" style="width:100%;justify-content:center;">Calcular porción diaria</button>
+        <div class="calc-result" id="calc-result" style="display:none;">
+          <div class="calc-result-amount" id="calc-amount">0</div>
+          <div class="calc-result-label">gramos por día</div>
+          <p style="font-size:0.85rem;color:var(--gray);margin-top:12px;" id="calc-note"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="view" id="view-quiz">
+  <div style="padding-top:90px;" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Quiz</div>
+        <h2 class="section-title">¿Qué producto necesita tu bichito?</h2>
+        <p class="section-desc">Respondé estas preguntas y te recomendamos</p>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-bar" style="width:0%"></div></div>
+        <div id="quiz-steps"></div>
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-result-icon" id="quiz-result-icon">🎉</div>
+          <div class="quiz-result-title" id="quiz-result-title">Recomendación</div>
+          <div class="quiz-result-text" id="quiz-result-text"></div>
+          <button class="btn btn-purple" onclick="showView('shop')">Ver productos →</button>
+          <button class="btn btn-outline" style="color:var(--purple-primary);border-color:var(--purple-light);margin-top:8px;" onclick="resetQuiz()">🔄 Hacer de nuevo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- CART SIDEBAR -->
+<div class="sidebar-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="sidebar" id="cart-sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">🛒 Tu carrito</div>
+    <button class="sidebar-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="sidebar-body" id="cart-body">
+    <div class="sidebar-empty">
+      <div class="sidebar-empty-icon">🛒</div>
+      <p>Tu carrito está vacío</p>
+      <button class="btn btn-purple btn-sm" style="margin-top:12px;" onclick="closeCart();showView('shop')">Ver productos</button>
+    </div>
+  </div>
+  <div class="sidebar-footer" id="cart-footer" style="display:none;">
+    <div class="cart-total">
+      <span class="cart-total-label">Total:</span>
+      <span class="cart-total-amount" id="cart-total">$0</span>
+    </div>
+    <div class="cart-shipping-note" id="cart-shipping-note"></div>
+    <button class="checkout-btn" onclick="checkout()">Finalizar compra 💜</button>
+  </div>
+</div>
+
+<!-- WISHLIST SIDEBAR -->
+<div class="sidebar-overlay" id="wishlist-overlay" onclick="closeWishlist()"></div>
+<div class="sidebar" id="wishlist-sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">❤️ Lista de deseos</div>
+    <button class="sidebar-close" onclick="closeWishlist()">✕</button>
+  </div>
+  <div class="sidebar-body" id="wishlist-body">
+    <div class="sidebar-empty">
+      <div class="sidebar-empty-icon">❤️</div>
+      <p>Tu lista de deseos está vacía</p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-overlay" id="admin-overlay">
+  <div class="admin-modal">
+    <div class="admin-header">
+      <h2>⚙️ Panel de Administración</h2>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-body" id="admin-body">
+      <div class="admin-login" id="admin-login">
+        <div class="admin-login-icon">🔐</div>
+        <h3>Acceso restringido</h3>
+        <p>Ingresá la contraseña para administrar la tienda</p>
+        <input type="password" id="admin-password" placeholder="Contraseña" onkeydown="if(event.key==='Enter')adminLogin()">
+        <button class="btn btn-purple" onclick="adminLogin()" style="width:100%;max-width:280px;justify-content:center;">Ingresar</button>
+        <div class="admin-login-error" id="admin-login-error">🔒 Contraseña incorrecta</div>
+      </div>
+      <div id="admin-panel" style="display:none;"></div>
+    </div>
+    <div class="admin-footer" id="admin-footer" style="display:none;">
+      <button class="admin-cancel-btn" onclick="closeAdmin()">Cerrar</button>
+      <button class="admin-save-btn" onclick="saveAdminSettings()">💾 Guardar cambios</button>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp-float" href="https://wa.me/5492612345678" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">💬</a>
+<!-- BACK TO TOP -->
+<button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- COOKIES -->
+<div class="cookies-bar" id="cookies-bar">
+  <div class="cookies-content">
+    <p>🍪 Usamos cookies para mejorar tu experiencia. Al navegar aceptás nuestra política de privacidad.</p>
+    <div class="cookies-buttons">
+      <button class="cookies-btn cookies-btn-accept" onclick="acceptCookies()">Aceptar</button>
+      <button class="cookies-btn cookies-btn-decline" onclick="declineCookies()">Rechazar</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo" id="footer-logo">🐾 BICHITOS Shop</div>
+        <p class="footer-desc" id="footer-desc">Dale a tu bichito lo que se merece. Somos una tienda mendocina especializada en alimentos y accesorios para perros y gatos. Consultanos por WhatsApp.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">👍</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="showView('shop')">🛍️ Tienda</a></li>
+          <li><a href="#" onclick="showView('blog')">📝 Blog</a></li>
+          <li><a href="#" onclick="showView('about')">💜 Nosotros</a></li>
+          <li><a href="#" onclick="showView('calculator')">📊 Calculadora</a></li>
+          <li><a href="#" onclick="showView('quiz')">❓ Quiz</a></li>
+          <li><a href="#" onclick="openCart()">🛒 Carrito</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Categorías</h4>
+        <ul class="footer-links" id="footer-categories">
+          <li><a href="#" onclick="showView('shop');setTimeout(()=>filterByCategory('perros'),100)">🐶 Perros</a></li>
+          <li><a href="#" onclick="showView('shop');setTimeout(()=>filterByCategory('gatos'),100)">🐱 Gatos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact">
+          <p>💬 <a href="https://wa.me/5492612345678" target="_blank">WhatsApp: 261 234-5678</a></p>
+          <p>📞 Tel: 261 123-4567</p>
+          <p>📧 bichitos.shop@gmail.com</p>
+          <p>📍 Gran Mendoza, Argentina</p>
+          <p>🕐 Lun a Vie 9-19hs | Sáb 9-13hs</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 <span id="footer-store-name">BICHITOS Shop</span> — Dale a tu bichito lo que se merece 💜</p>
+    </div>
+  </div>
+</footer>
+<script>
+// ====== DATA ======
+const PRODUCTS_RAW = [
+  ["Estampa Plus perro RAZAS PEQUEÑAS x 8 Kg","perros",29180,"",35,"",true,12],
+  ["Estampa Plus perro x 15 Kg","perros",50690,"",35,"",true,8],
+  ["Estampa Plus perro x 20 Kg","perros",65148,"",35,"",false,5],
+  ["Estampa plus RAZA PEQUEÑA X 15 KG","perros",53160,"",35,"",false,3],
+  ["ESTAMPA RAZA PEQUEÑA X 3KG (3 unid)","perros",37695,"",35,"",false,10],
+  ["Estampa Criadores x 15 Kg","perros",42898,"",35,"",false,20],
+  ["Estampa Criadores x 20 Kg","perros",55173,"",35,"",false,6],
+  ["Estampa Criadores x 8kg","perros",23547,"",35,"",false,15],
+  ["Estampa Plus Cachorro x 15 Kg","perros",57475,"",35,"",false,4],
+  ["Estampa Plus Cachorro x 8kg","perros",31553,"",35,"",false,7],
+  ["Estampa Plus Gato x15kg","gatos",60300,"",35,"",true,12],
+  ["Estampa Plus Gato x 8kg","gatos",33106,"",35,"",false,9],
+  ["Estampa Gato x 1 kg (pack x8 u)","gatos",39679,"",35,"",false,2],
+  ["Valiant Criadores x 20 Kg","perros",47398,"",35,"",false,25],
+  ["Estampa Insignia Perro Adulto x 20kg","perros",109015,"",35,"",true,8],
+  ["Estampa Insignia Perro Adulto x 3kg","perros",20941,"",35,"",false,4],
+  ["Estampa Insignia Perro Adulto x 15 kg","perros",81761,"",35,"",false,6],
+  ["Estampa Insignia Perro Cachorro x 8kg","perros",50290,"",35,"",false,3],
+  ["Estampa Insignia Perro Cachorro x 3kg","perros",22491,"",35,"",false,5],
+  ["Estampa Insignia Perro Mordida Pequeña x 8kg","perros",48913,"",35,"",false,7],
+  ["Estampa Insignia Perro Mordida Pequeña x 3kg","perros",21962,"",35,"",false,2],
+  ["Jaspe Adulto x 20 kg","perros",40307,"",35,"",false,30],
+  ["Jaspe Adulto MP x 20 kg","perros",44150,"",35,"",false,18],
+  ["Jaspe Adulto x 8 kg","perros",16590,"",35,"",false,22],
+  ["Jaspe Adulto MP x 8 kg","perros",18174,"",35,"",false,14],
+  ["Jaspe Adulto x 3 kg (4u)","perros",32149,"",35,"",false,0],
+  ["Jaspe Adulto MP x 3kg (4u)","perros",35174,"",35,"",false,0],
+  ["Jaspe Cachorro x 15 kg","perros",39158,"",35,"",false,11],
+  ["Jaspe Cach Premium x 15 kg","perros",51555,"",35,"",false,8],
+  ["Jaspe Cach Premium x 1,5kg (8u)","perros",70648,"",35,"",false,4],
+  ["Jaspe Gato x 10 kg","gatos",31456,"",35,"",false,16],
+  ["Jaspe Gato x 1 kg (12u)","gatos",51249,"",35,"",false,6],
+  ["Jaspe Gato x 20 kg","gatos",59862,"",35,"",false,3],
+  ["Jaspe Gato Premium x 8 kg","gatos",32877,"",35,"",false,9],
+  ["Jaspe Gato Premium x 1kg (12u)","gatos",74088,"",35,"",false,1],
+  ["Jaspe Premium x 20 kg","perros",61626,"",35,"",false,5],
+  ["Jaspe Premium x 1,5kg (8u)","perros",63322,"",35,"",false,7],
+  ["Jaspe Premium x 15 Kg","perros",46229,"",35,"",false,12],
+  ["Jaspe Premium MP x 8 Kg","perros",28254,"",35,"",false,10],
+  ["Jaspe Premium MP x 15 Kg","perros",48466,"",35,"",false,8],
+  ["Jaspe Premium MP x1,5kg (8u)","perros",66397,"",35,"",false,0],
+  ["Jaspe Criadores x 20 kg","perros",49368,"",35,"",false,20],
+  ["Liwué x 15 kg","perros",21487,"",35,"",false,15],
+  ["Liwué x 20 kg","perros",28465,"",35,"",false,9],
+  ["Liwué Gato x 10 kg","gatos",24577,"",35,"",false,4],
+  ["Liwué Gato x 20 kg","gatos",46601,"",35,"",false,6],
+  ["Liwue Plus x 20 Kg","perros",33083,"",35,"",false,11],
+  ["Vagoneta Gourmet x 15 Kg","perros",29169,"",35,"",false,13],
+  ["Vagoneta Gourmet x 20 Kg","perros",38896,"",35,"",false,8],
+  ["Vagoneta Gourmet x 1,5Kg (x6u)","perros",25610,"",35,"",false,5],
+  ["Vagoneta CARNE Y CEREALES x20Kg","perros",38896,"",35,"",false,16],
+  ["Vagoneta TRADICIONAL x 8 Kg","perros",16127,"",35,"",false,22],
+  ["Vagoneta Raza Pequeña x 15 Kg","perros",30571,"",35,"",false,7],
+  ["Vagoneta Raza Pequeña x 8 Kg","perros",16745,"",35,"",false,4],
+  ["Vagoneta Raza Pequeña x 1,5 Kg (x6u)","perros",26831,"",35,"",false,2],
+  ["Vagoneta Cachorro x 15 Kg","perros",40370,"",35,"",false,9],
+  ["Vagoneta Cachorro x 1,5 Kg (x6u)","perros",33980,"",35,"",false,3],
+  ["Dr Perrot x 20 Kg","perros",37345,"",35,"",false,18],
+  ["Dr Perrot x 15 Kg","perros",28007,"",35,"",false,14],
+  ["Dr Perrot x 1,5 Kg (pack x6u)","perros",23065,"",35,"",false,6],
+  ["Vagoneta Gato x 10 Kg","gatos",32335,"",35,"",false,10],
+  ["Vagoneta Gato x 20 Kg","gatos",62340,"",35,"",false,5],
+  ["Vagoneta Gato x 1 Kg (pack x8u)","gatos",35357,"",35,"",false,8],
+  ["Vagoneta Gato Gourmet x 10 Kg","gatos",32335,"",35,"",false,3],
+  ["Vagoneta Gato Gourmet x 20 Kg","gatos",62340,"",35,"",false,4],
+  ["Vagoneta Gato Gourmet x 1 Kg (pack x8u)","gatos",35357,"",35,"",false,0],
+  ["Vagoneta Gatito x 10 Kg","gatos",34545,"",35,"",false,7],
+  ["Vagoneta Gatito x 0,5 Kg (pack x12u)","gatos",30536,"",35,"",false,12]
+];
+
+const GRADIENTS = [
+  "linear-gradient(135deg, #7C3AED, #EC4899)",
+  "linear-gradient(135deg, #5B21B6, #A78BFA)",
+  "linear-gradient(135deg, #38B2AC, #F6AD55)",
+  "linear-gradient(135deg, #EC4899, #F6AD55)",
+  "linear-gradient(135deg, #8B5CF6, #38B2AC)",
+  "linear-gradient(135deg, #FF6B6B, #F6AD55)",
+  "linear-gradient(135deg, #A78BFA, #EC4899)",
+  "linear-gradient(135deg, #4C1D95, #7C3AED)",
+  "linear-gradient(135deg, #F6AD55, #FF6B6B)",
+  "linear-gradient(135deg, #5B21B6, #38B2AC)",
+  "linear-gradient(135deg, #7C3AED, #FF6B6B)",
+  "linear-gradient(135deg, #38B2AC, #A78BFA)"
+];
+
+const CATEGORIES = [
+  {id:"perros", label:"Perros", icon:"🐶", gradient:"linear-gradient(135deg, #7C3AED, #EC4899)"},
+  {id:"gatos", label:"Gatos", icon:"🐱", gradient:"linear-gradient(135deg, #5B21B6, #A78BFA)"},
+  {id:"alimentos", label:"Alimentos", icon:"🍖", gradient:"linear-gradient(135deg, #EC4899, #F6AD55)"},
+  {id:"accesorios", label:"Accesorios", icon:"🎾", gradient:"linear-gradient(135deg, #38B2AC, #A78BFA)"},
+  {id:"higiene", label:"Higiene", icon:"🧴", gradient:"linear-gradient(135deg, #8B5CF6, #38B2AC)"},
+  {id:"juguetes", label:"Juguetes", icon:"🧸", gradient:"linear-gradient(135deg, #FF6B6B, #F6AD55)"},
+  {id:"camas", label:"Camas y Refugios", icon:"🛏️", gradient:"linear-gradient(135deg, #A78BFA, #EC4899)"},
+  {id:"ropa", label:"Ropa y Disfraces", icon:"👗", gradient:"linear-gradient(135deg, #4C1D95, #A78BFA)"},
+  {id:"ofertas", label:"Ofertas", icon:"🔥", gradient:"linear-gradient(135deg, #FF6B6B, #EC4899)"}
+];
+
+const BLOG_POSTS = [
+  {id:1, tag:"Alimentación", title:"¿Cuánta comida darle a tu perro según su peso?", excerpt:"Guía completa de porciones diarias recomendadas para perros de todas las razas y tamaños.", image:"linear-gradient(135deg, #7C3AED, #38B2AC)", date:"15 Mar 2024"},
+  {id:2, tag:"Cuidados", title:"5 señales de que tu gato está feliz y saludable", excerpt:"Aprendé a leer el lenguaje corporal de tu felino y detectá signos de bienestar.", image:"linear-gradient(135deg, #EC4899, #F6AD55)", date:"8 Mar 2024"},
+  {id:3, tag:"Consejos", title:"Cómo elegir el mejor alimento balanceado para tu mascota", excerpt:"Guía para leer etiquetas, entender ingredientes y elegir la mejor opción.", image:"linear-gradient(135deg, #5B21B6, #A78BFA)", date:"1 Mar 2024"},
+  {id:4, tag:"Salud", title:"Vacunas y desparasitación: calendario esencial", excerpt:"Todo lo que necesitás saber para mantener al día la salud de tu perro o gato.", image:"linear-gradient(135deg, #38B2AC, #F6AD55)", date:"22 Feb 2024"},
+  {id:5, tag:"Juguetes", title:"Los mejores juguetes para estimular a tu mascota", excerpt:"Juguetes interactivos, educativos y divertidos para cada personalidad.", image:"linear-gradient(135deg, #FF6B6B, #7C3AED)", date:"15 Feb 2024"},
+  {id:6, tag:"Higiene", title:"Guía de baño y cuidado del pelaje para perros y gatos", excerpt:"Frecuencia, productos recomendados y tips para un pelaje saludable.", image:"linear-gradient(135deg, #A78BFA, #EC4899)", date:"8 Feb 2024"}
+];
+
+const REVIEWS = [
+  {name:"María G.", avatar:"MG", color:"#7C3AED", stars:5, text:"Excelente atención! Me asesoraron por WhatsApp y la entrega fue súper rápida. Mi perro ama la Estampa Plus.", date:"Hace 2 días"},
+  {name:"Carlos P.", avatar:"CP", color:"#EC4899", stars:5, text:"Los mejores precios de Mendoza. Compro siempre acá el alimento de mis gatos. Muy recomendables.", date:"Hace 5 días"},
+  {name:"Laura M.", avatar:"LM", color:"#38B2AC", stars:4, text:"Buenísima variedad de productos. La página es muy fácil de usar.", date:"Hace 1 semana"},
+  {name:"Diego R.", avatar:"DR", color:"#F6AD55", stars:5, text:"Compré la cama para mi perro y es hermosísima. Llegó antes de lo esperado!", date:"Hace 1 semana"},
+  {name:"Sofía L.", avatar:"SL", color:"#FF6B6B", stars:5, text:"Desde que descubrí BICHITOS Shop no compro en otro lado.", date:"Hace 2 semanas"},
+  {name:"Pablo A.", avatar:"PA", color:"#8B5CF6", stars:4, text:"Muy buena atención personalizada. Me ayudaron a elegir el alimento correcto.", date:"Hace 2 semanas"}
+];
+
+// ====== STATE ======
+let products = [];
+let cart = JSON.parse(localStorage.getItem('bichitos_cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('bichitos_wishlist') || '[]');
+let settings = JSON.parse(localStorage.getItem('bichitos_settings') || '{}');
+let currentSlide = 0;
+let slideInterval;
+let currentCategory = 'todas';
+let currentQuizStep = 0;
+let quizAnswers = [];
+
+// ====== PRODUCTS ======
+function parseProducts() {
+  products = PRODUCTS_RAW.map((p, i) => ({
+    id: i, name: p[0], category: p[1], price: Number(p[2]),
+    destacado: p[6] === true, stock: Number(p[7]),
+    gradient: GRADIENTS[i % GRADIENTS.length]
+  }));
+  if (settings.products) {
+    settings.products.forEach(ov => {
+      const prod = products.find(p => p.id === ov.id);
+      if (prod) { if (ov.name) prod.name = ov.name; if (ov.price) prod.price = Number(ov.price); }
+    });
+  }
+}
+
+function formatPrice(n) { return '$' + Number(n).toLocaleString('es-AR'); }
+
+// ====== RENDER ======
+function renderCategories() {
+  document.getElementById('categories-grid').innerHTML = CATEGORIES.map(c =>
+    `<div class="cat-card" style="background:${c.gradient}" onclick="filterByCategory('${c.id}')">
+      <div class="cat-icon">${c.icon}</div>
+      <div class="cat-name">${c.label}</div>
+      <div class="cat-count">${products.filter(p => p.category === c.id).length || 0} productos</div>
+    </div>`
+  ).join('');
+}
+
+function createCard(product, opts = {}) {
+  const { showWishlist = true } = opts;
+  const inWishlist = wishlist.includes(product.id);
+  const gradient = product.gradient || GRADIENTS[product.id % GRADIENTS.length];
+  const isOos = product.stock <= 0;
+  const shortName = product.name.split('x')[0].trim();
+  return `<div class="product-card">
+    ${product.destacado ? '<div class="product-badge destacado">⭐ Destacado</div>' : ''}
+    ${showWishlist ? `<button class="product-wishlist ${inWishlist?'active':''}" onclick="toggleWishlist(${product.id})">${inWishlist?'❤️':'🤍'}</button>` : ''}
+    <div class="img-placeholder" style="background:${gradient};min-height:150px;">
+      <span>${shortName}</span>
+    </div>
+    <div class="product-info">
+      <div class="product-category">${product.category === 'perros' ? '🐶 Perros' : '🐱 Gatos'}</div>
+      <div class="product-name">${product.name}</div>
+      <div class="product-price">
+        <span class="price-current">${formatPrice(product.price)}</span>
+        ${isOos ? '<span style="color:var(--coral);font-size:0.75rem;font-weight:700;">SIN STOCK</span>' : ''}
+      </div>
+      <div class="product-actions">
+        <button class="btn btn-purple btn-sm" onclick="addToCart(${product.id})" ${isOos ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>🛒 ${isOos ? 'Agotado' : 'Comprar'}</button>
+        <button class="btn btn-outline btn-sm" style="color:var(--purple-primary);border-color:var(--purple-light);flex:0 0 auto;" onclick="showProductDetail(${product.id})">👁️</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderFeatured() {
+  const grid = document.getElementById('featured-grid');
+  const featured = products.filter(p => p.destacado && p.stock > 0).slice(0, 8);
+  if (featured.length === 0) { document.getElementById('section-featured').style.display = 'none'; return; }
+  grid.innerHTML = featured.map(p => createCard(p, { showBadge: false })).join('');
+}
+
+function renderShop() {
+  const grid = document.getElementById('shop-grid');
+  const searchVal = (document.getElementById('shop-search-input')?.value || '').toLowerCase();
+  const sortVal = document.getElementById('shop-sort')?.value || 'default';
+  let filtered = [...products];
+  if (currentCategory !== 'todas') filtered = filtered.filter(p => p.category === currentCategory);
+  if (searchVal) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchVal));
+  if (sortVal === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+  else if (sortVal === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+  else if (sortVal === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name));
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray);"><div style="font-size:3rem;margin-bottom:12px;">🔍</div><p>No encontramos productos con esos criterios.</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(p => createCard(p)).join('');
+}
+
+function renderFilters() {
+  const cats = [{id:'todas',label:'Todas',icon:'🌐'}, ...CATEGORIES];
+  document.getElementById('shop-filters').innerHTML = cats.map(c =>
+    `<button class="filter-btn ${currentCategory === c.id ? 'active' : ''}" onclick="filterByCategory('${c.id}')">${c.icon} ${c.label}</button>`
+  ).join('');
+}
+
+function renderBlogPreview() {
+  document.getElementById('blog-preview-grid').innerHTML = BLOG_POSTS.slice(0, 3).map(p => createBlogCard(p)).join('');
+}
+
+function renderBlog() {
+  document.getElementById('blog-grid').innerHTML = BLOG_POSTS.map(p => createBlogCard(p)).join('');
+}
+
+function createBlogCard(post) {
+  return `<div class="blog-card" onclick="showBlogPost(${post.id})">
+    <div class="img-placeholder" style="background:${post.image};min-height:180px;"><span>📝 ${post.title}</span></div>
+    <div class="blog-card-body">
+      <div class="blog-card-tag">${post.tag}</div>
+      <h3 class="blog-card-title">${post.title}</h3>
+      <p class="blog-card-excerpt">${post.excerpt}</p>
+      <div class="blog-card-meta"><span>📅 ${post.date}</span><span>📖 3 min lectura</span></div>
+    </div>
+  </div>`;
+}
+
+function renderReviews() {
+  document.getElementById('reviews-grid').innerHTML = REVIEWS.map(r => {
+    const stars = '⭐'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+    return `<div class="review-card">
+      <div class="review-header">
+        <div class="review-avatar" style="background:${r.color}">${r.avatar}</div>
+        <div class="review-info"><h4>${r.name}</h4><span>${r.date}</span></div>
+      </div>
+      <div class="review-stars">${stars}</div>
+      <p class="review-text">"${r.text}"</p>
+    </div>`;
+  }).join('');
+}
+
+function renderCart() {
+  const body = document.getElementById('cart-body');
+  const footer = document.getElementById('cart-footer');
+  const totalSpan = document.getElementById('cart-total');
+  const badge = document.getElementById('cart-badge');
+  const shippingNote = document.getElementById('cart-shipping-note');
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="sidebar-empty"><div class="sidebar-empty-icon">🛒</div><p>Tu carrito está vacío</p><button class="btn btn-purple btn-sm" style="margin-top:12px;" onclick="closeCart();showView(\'shop\')">Ver productos</button></div>';
+    footer.style.display = 'none'; badge.textContent = '0'; return;
+  }
+  let total = 0;
+  body.innerHTML = cart.map((item, idx) => {
+    const prod = products.find(p => p.id === item.id);
+    if (!prod) return '';
+    const subtotal = prod.price * item.qty; total += subtotal;
+    const grad = prod.gradient || GRADIENTS[prod.id % GRADIENTS.length];
+    return `<div class="cart-item">
+      <div class="img-placeholder" style="background:${grad};min-height:70px;width:70px;font-size:0.5rem;padding:4px;"><span style="font-size:0.5rem;">${prod.name.split('x')[0].trim()}</span></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${prod.name}</div>
+        <div class="cart-item-price">${formatPrice(subtotal)}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeCartQty(${idx}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" onclick="changeCartQty(${idx}, 1)">+</button>
+          <button class="cart-item-remove" onclick="removeFromCart(${idx})">🗑️</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  const freeShipping = 80000;
+  shippingNote.textContent = total >= freeShipping ? '🎉 Envío gratis por compras mayores a $80.000' : '🚚 Te faltan ' + formatPrice(freeShipping - total) + ' para envío gratis';
+  totalSpan.textContent = formatPrice(total);
+  footer.style.display = 'block';
+  badge.textContent = cart.reduce((s, i) => s + i.qty, 0);
+}
+
+function renderWishlist() {
+  const body = document.getElementById('wishlist-body');
+  document.getElementById('wishlist-badge').textContent = wishlist.length;
+  if (wishlist.length === 0) {
+    body.innerHTML = '<div class="sidebar-empty"><div class="sidebar-empty-icon">❤️</div><p>Tu lista de deseos está vacía</p><button class="btn btn-purple btn-sm" style="margin-top:12px;" onclick="closeWishlist();showView(\'shop\')">Explorar productos</button></div>';
+    return;
+  }
+  body.innerHTML = wishlist.map(id => {
+    const prod = products.find(p => p.id === id);
+    if (!prod) return '';
+    const grad = prod.gradient || GRADIENTS[prod.id % GRADIENTS.length];
+    return `<div class="cart-item">
+      <div class="img-placeholder" style="background:${grad};min-height:70px;width:70px;font-size:0.5rem;padding:4px;"><span style="font-size:0.5rem;">${prod.name.split('x')[0].trim()}</span></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${prod.name}</div>
+        <div class="cart-item-price">${formatPrice(prod.price)}</div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <button class="btn btn-purple btn-sm" onclick="addToCart(${prod.id});closeWishlist();">🛒 Comprar</button>
+          <button class="cart-item-remove" onclick="toggleWishlist(${prod.id})">💔 Quitar</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderAll() {
+  parseProducts();
+  renderCategories();
+  renderFeatured();
+  renderShop();
+  renderFilters();
+  renderBlogPreview();
+  renderBlog();
+  renderReviews();
+  renderCart();
+  renderWishlist();
+  applySettingsToDOM();
+}
+
+// ====== NAVIGATION ======
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-' + viewId);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('#header-nav a').forEach(a => a.classList.toggle('active', a.dataset.view === viewId));
+  closeMobileMenu();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if (viewId === 'shop') { renderShop(); renderFilters(); }
+  if (viewId === 'calculator') document.getElementById('calc-result').style.display = 'none';
+  if (viewId === 'quiz') resetQuiz();
+}
+
+function showProductDetail(productId) {
+  const prod = products.find(p => p.id === productId);
+  if (!prod) return;
+  showView('product-detail');
+  const container = document.getElementById('product-detail-container');
+  const grad = prod.gradient || GRADIENTS[prod.id % GRADIENTS.length];
+  const inWishlist = wishlist.includes(prod.id);
+  container.innerHTML = `
+    <button onclick="showView('shop')" style="margin-bottom:16px;color:var(--purple-primary);font-weight:600;">← Volver a tienda</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start;">
+      <div class="img-placeholder" style="background:${grad};min-height:350px;"><span style="font-size:1.2rem;">${prod.name}</span></div>
+      <div>
+        <div class="product-category" style="font-size:0.85rem;margin-bottom:8px;">${prod.category === 'perros' ? '🐶 Perros' : '🐱 Gatos'}</div>
+        <h1 style="font-family:var(--font-display);font-size:1.8rem;margin-bottom:12px;">${prod.name}</h1>
+        <div class="product-price" style="margin-bottom:16px;"><span class="price-current" style="font-size:2rem;">${formatPrice(prod.price)}</span></div>
+        <p style="color:var(--gray);margin-bottom:20px;line-height:1.6;">Alimento balanceado de alta calidad para ${prod.category === 'perros' ? 'perros' : 'gatos'}. Formulado con ingredientes seleccionados para una nutrición completa.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="padding:8px 16px;background:var(--purple-bg);border-radius:var(--radius-sm);"><strong>Stock:</strong> ${prod.stock > 0 ? '✅ Disponible' : '❌ Agotado'}</div>
+          <div style="padding:8px 16px;background:var(--purple-bg);border-radius:var(--radius-sm);"><strong>Categoría:</strong> ${prod.category === 'perros' ? 'Perros' : 'Gatos'}</div>
+        </div>
+        <div style="display:flex;gap:12px;">
+          <button class="btn btn-purple" onclick="addToCart(${prod.id});showProductDetail(${prod.id})" ${prod.stock <= 0 ? 'disabled style="opacity:0.5;"' : ''}>🛒 Agregar al carrito</button>
+          <button class="btn btn-outline" style="color:var(--purple-primary);border-color:var(--purple-light);" onclick="toggleWishlist(${prod.id});showProductDetail(${prod.id})">${inWishlist ? '❤️' : '🤍'} ${inWishlist ? 'En deseos' : 'Guardar'}</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function showBlogPost(id) {
+  const post = BLOG_POSTS.find(p => p.id === id);
+  if (!post) return;
+  showView('blog-post');
+  document.getElementById('blog-post-container').innerHTML = `
+    <button onclick="showView('blog')" style="margin-bottom:16px;color:var(--purple-primary);font-weight:600;">← Volver al blog</button>
+    <div class="img-placeholder" style="background:${post.image};min-height:250px;border-radius:var(--radius-lg);margin-bottom:24px;"><span style="font-size:1.5rem;">📝 ${post.title}</span></div>
+    <div style="max-width:700px;margin:0 auto;">
+      <div class="blog-card-tag">${post.tag}</div>
+      <h1 style="font-family:var(--font-display);font-size:2rem;margin:12px 0 8px;">${post.title}</h1>
+      <div style="color:var(--gray);font-size:0.9rem;margin-bottom:24px;">📅 ${post.date} · 📖 3 min lectura</div>
+      <div style="color:var(--dark);line-height:1.8;font-size:1.05rem;">
+        <p>${post.excerpt}</p>
+        <p style="margin-top:16px;">En <strong>BICHITOS Shop</strong> nos preocupamos por la salud y felicidad de tu mascota.</p>
+        <p style="margin-top:16px;">Recordá que siempre podés consultarnos por WhatsApp para recibir asesoramiento personalizado.</p>
+      </div>
+      <div style="margin-top:30px;padding:20px;background:var(--purple-bg);border-radius:var(--radius-md);text-align:center;">
+        <p style="font-weight:700;margin-bottom:10px;">¿Tenés dudas sobre este tema?</p>
+        <a class="btn btn-purple" href="https://wa.me/5492612345678" target="_blank">💬 Consultanos por WhatsApp</a>
+      </div>
+    </div>`;
+}
+
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('active');
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
+// ====== HERO SLIDER ======
+function goToSlide(index) {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[index].classList.add('active');
+  dots[index].classList.add('active');
+  currentSlide = index;
+}
+function nextSlide() { goToSlide((currentSlide + 1) % 3); }
+function startSlider() { stopSlider(); slideInterval = setInterval(nextSlide, 5000); }
+function stopSlider() { if (slideInterval) clearInterval(slideInterval); }
+
+// ====== SHOP ======
+function filterByCategory(catId) {
+  currentCategory = catId;
+  if (document.getElementById('view-shop').classList.contains('active')) { renderFilters(); renderShop(); }
+  else { showView('shop'); setTimeout(() => { renderFilters(); renderShop(); }, 50); }
+}
+function filterProducts() { renderShop(); }
+
+// ====== SEARCH ======
+let searchTimeout;
+function debouncedSearch(val) {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => performSearch(val), 300);
+}
+function performSearch(val) {
+  const results = document.getElementById('search-results');
+  if (!val.trim()) { results.style.display = 'none'; return; }
+  const matches = products.filter(p => p.name.toLowerCase().includes(val.toLowerCase()));
+  if (matches.length === 0) {
+    results.innerHTML = '<div style="padding:20px;text-align:center;color:var(--gray);">No se encontraron productos</div>';
+  } else {
+    results.innerHTML = matches.slice(0, 8).map(p => {
+      const grad = p.gradient || GRADIENTS[p.id % GRADIENTS.length];
+      return `<div style="display:flex;gap:10px;padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--gray-light);transition:var(--transition);" onmouseover="this.style.background='var(--purple-bg)'" onmouseout="this.style.background=''" onclick="selectSearchResult(${p.id})">
+        <div class="img-placeholder" style="background:${grad};min-height:45px;width:45px;font-size:0.4rem;padding:4px;flex-shrink:0;"><span style="font-size:0.4rem;">${p.name.split('x')[0].trim()}</span></div>
+        <div><div style="font-weight:700;font-size:0.85rem;">${p.name}</div><div style="color:var(--purple-deep);font-weight:700;font-size:0.9rem;">${formatPrice(p.price)}</div></div>
+      </div>`;
+    }).join('');
+  }
+  results.style.display = 'block';
+}
+function selectSearchResult(id) { toggleSearch(); showProductDetail(id); }
+function toggleSearch() {
+  const overlay = document.getElementById('search-overlay');
+  const bar = document.getElementById('search-bar');
+  const isOpen = bar.style.display === 'block';
+  overlay.classList.toggle('open', !isOpen);
+  bar.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) { document.getElementById('search-input').value = ''; document.getElementById('search-input').focus(); document.getElementById('search-results').style.display = 'none'; }
+}
+
+// ====== CART ======
+function addToCart(productId) {
+  const prod = products.find(p => p.id === productId);
+  if (!prod || prod.stock <= 0) return;
+  const existing = cart.findIndex(item => item.id === productId);
+  if (existing >= 0) cart[existing].qty += 1;
+  else cart.push({ id: productId, qty: 1 });
+  saveCart(); renderCart();
+  showToast('✅ ' + prod.name.split('x')[0].trim() + ' agregado al carrito');
+}
+function removeFromCart(index) { cart.splice(index, 1); saveCart(); renderCart(); }
+function changeCartQty(index, delta) {
+  if (cart[index].qty + delta <= 0) { removeFromCart(index); return; }
+  cart[index].qty += delta; saveCart(); renderCart();
+}
+function saveCart() { localStorage.setItem('bichitos_cart', JSON.stringify(cart)); }
+function openCart() { document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-sidebar').classList.add('open'); renderCart(); }
+function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-sidebar').classList.remove('open'); }
+function checkout() {
+  if (cart.length === 0) return;
+  const total = cart.reduce((s, item) => { const p = products.find(pr => pr.id === item.id); return s + (p ? p.price * item.qty : 0); }, 0);
+  const msg = cart.map(item => { const p = products.find(pr => pr.id === item.id); return p ? '• ' + p.name + ' x' + item.qty + ' = ' + formatPrice(p.price * item.qty) : ''; }).join('\n');
+  const fullMsg = encodeURIComponent('¡Hola BICHITOS! Quiero hacer un pedido:\n\n' + msg + '\n\n💰 Total: ' + formatPrice(total) + '\n\n📌 Mendoza, Argentina');
+  closeCart(); window.open('https://wa.me/5492612345678?text=' + fullMsg, '_blank');
+}
+
+// ====== WISHLIST ======
+function toggleWishlist(productId) {
+  const idx = wishlist.indexOf(productId);
+  if (idx >= 0) wishlist.splice(idx, 1);
+  else wishlist.push(productId);
+  localStorage.setItem('bichitos_wishlist', JSON.stringify(wishlist));
+  renderWishlist(); renderFeatured(); renderShop();
+  showToast(idx >= 0 ? '💔 Quitado de deseos' : '❤️ Agregado a deseos');
+}
+function openWishlist() { document.getElementById('wishlist-overlay').classList.add('open'); document.getElementById('wishlist-sidebar').classList.add('open'); renderWishlist(); }
+function closeWishlist() { document.getElementById('wishlist-overlay').classList.remove('open'); document.getElementById('wishlist-sidebar').classList.remove('open'); }
+
+// ====== CALCULATOR ======
+function calculateFood() {
+  const pet = document.getElementById('calc-pet').value;
+  const weight = parseFloat(document.getElementById('calc-weight').value);
+  const age = document.getElementById('calc-age').value;
+  const activity = document.getElementById('calc-activity').value;
+  if (!weight || weight <= 0) { showToast('⚠️ Ingresá un peso válido'); return; }
+  let base = pet === 'perro' ? weight * 25 : weight * 20;
+  if (age === 'cachorro') base *= 1.8;
+  else if (age === 'senior') base *= 0.85;
+  if (activity === 'baja') base *= 0.8;
+  else if (activity === 'alta') base *= 1.3;
+  base = Math.round(base / 10) * 10;
+  document.getElementById('calc-amount').textContent = base;
+  document.getElementById('calc-note').textContent = '🐾 Recomendación para ' + (pet === 'perro' ? 'perro' : 'gato') + ' de ' + weight + 'kg. Dividí en ' + (age === 'cachorro' ? '3-4' : '2') + ' comidas al día.';
+  document.getElementById('calc-result').style.display = 'block';
+}
+
+// ====== QUIZ ======
+const QUIZ_STEPS = [
+  {question: "¿Qué mascota tenés?", options: [{label:"🐶 Perro",value:"perro"},{label:"🐱 Gato",value:"gato"},{label:"🐭 Ambos",value:"ambos"}]},
+  {question: "¿Cuál es su edad?", options: [{label:"🍼 Cachorro / Gatito",value:"cachorro"},{label:"🐕 Adulto",value:"adulto"},{label:"👴 Senior",value:"senior"}]},
+  {question: "¿Qué estás buscando principalmente?", options: [{label:"🍖 Alimento balanceado",value:"alimento"},{label:"🧸 Juguetes",value:"juguetes"},{label:"🧴 Higiene y cuidado",value:"higiene"},{label:"🛏️ Camas y accesorios",value:"accesorios"}]},
+  {question: "¿Tu mascota tiene alguna necesidad especial?", options: [{label:"💪 Control de peso",value:"peso"},{label:"🦷 Salud dental",value:"dental"},{label:"🐾 Pelaje y piel",value:"piel"},{label:"❓ Ninguna en especial",value:"ninguna"}]}
+];
+const QUIZ_RECOMMENDATIONS = {
+  "perro_cachorro_alimento": {icon:"🍖", title:"Alimento premium para cachorro", text:"Los cachorros necesitan nutrientes específicos para crecer sanos. Te recomendamos Estampa Plus Cachorro."},
+  "perro_adulto_alimento": {icon:"🍖", title:"Alimento balanceado para perro adulto", text:"Para perros adultos activos, te sugerimos Estampa Plus, Vagoneta Gourmet o Dr Perrot."},
+  "perro_senior_alimento": {icon:"🍖", title:"Alimento para perro senior", text:"Los perros mayores necesitan fórmulas especiales. Consultanos por nuestras opciones."},
+  "gato_adulto_alimento": {icon:"🐱", title:"Alimento para gato adulto", text:"Estampa Plus Gato y Vagoneta Gato son excelentes opciones para tu felino."},
+  "gato_cachorro_alimento": {icon:"🐱", title:"Alimento para gatito", text:"Los gatitos necesitan proteínas de calidad para crecer fuertes y sanos."},
+  "default_juguetes": {icon:"🧸", title:"Juguetes divertidos", text:"Tenemos una gran variedad de juguetes interactivos y mordedores."},
+  "default_higiene": {icon:"🧴", title:"Productos de higiene", text:"Shampoos, cepillos, cortaúñas y todo para el cuidado de tu mascota."},
+  "default_accesorios": {icon:"🛏️", title:"Camas y accesorios", text:"Camas cómodas, ropa abrigada y accesorios para consentir a tu bichito."},
+  "default_default": {icon:"🎉", title:"¡Tenemos todo para tu bichito!", text:"Explorá nuestra tienda y descubrí alimentos, juguetes, accesorios y mucho más."}
+};
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-steps');
+  container.innerHTML = QUIZ_STEPS.map((step, si) =>
+    `<div class="quiz-step ${si === 0 ? 'active' : ''}" data-step="${si}">
+      <div class="quiz-question">${step.question}</div>
+      <div class="quiz-options">${step.options.map((opt, oi) =>
+        `<button class="quiz-option" onclick="selectQuizOption(${si},${oi},'${opt.value}')">${opt.label}</button>`
+      ).join('')}</div>
+    </div>`
+  ).join('');
+  document.getElementById('quiz-bar').style.width = '0%';
+  document.getElementById('quiz-result').classList.remove('show');
+  currentQuizStep = 0; quizAnswers = [];
+}
+
+function selectQuizOption(stepIdx, optIdx, value) {
+  const step = document.querySelectorAll('.quiz-step');
+  const options = step[stepIdx].querySelectorAll('.quiz-option');
+  options.forEach(o => o.classList.remove('selected'));
+  options[optIdx].classList.add('selected');
+  quizAnswers[stepIdx] = value;
+  if (stepIdx < QUIZ_STEPS.length - 1) {
+    setTimeout(() => {
+      step[stepIdx].classList.remove('active');
+      step[stepIdx + 1].classList.add('active');
+      currentQuizStep = stepIdx + 1;
+      document.getElementById('quiz-bar').style.width = ((stepIdx + 1) / QUIZ_STEPS.length * 100) + '%';
+    }, 300);
+  } else {
+    document.getElementById('quiz-bar').style.width = '100%';
+    setTimeout(showQuizResult, 400);
+  }
+}
+
+function showQuizResult() {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('quiz-result').classList.add('show');
+  const pet = quizAnswers[0] || 'default';
+  const age = quizAnswers[1] || 'default';
+  const need = quizAnswers[2] || 'default';
+  const key1 = pet + '_' + age + '_' + need;
+  const key2 = 'default_' + need;
+  const rec = QUIZ_RECOMMENDATIONS[key1] || QUIZ_RECOMMENDATIONS[key2] || QUIZ_RECOMMENDATIONS.default_default;
+  document.getElementById('quiz-result-icon').textContent = rec.icon;
+  document.getElementById('quiz-result-title').textContent = rec.title;
+  document.getElementById('quiz-result-text').textContent = rec.text;
+}
+function resetQuiz() { renderQuiz(); }
+
+// ====== NEWSLETTER ======
+function subscribeNewsletter(e) {
+  e.preventDefault();
+  showToast('✅ ¡Gracias por suscribirte! 💜 Te vamos a mantener al tanto.');
+  e.target.reset();
+  return false;
+}
+
+// ====== COOKIES ======
+function acceptCookies() { localStorage.setItem('bichitos_cookies', 'accepted'); document.getElementById('cookies-bar').classList.remove('show'); }
+function declineCookies() { localStorage.setItem('bichitos_cookies', 'declined'); document.getElementById('cookies-bar').classList.remove('show'); }
+
+// ====== TOAST ======
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ====== HEADER SCROLL ======
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  const backTop = document.getElementById('back-top');
+  const scrollY = window.scrollY;
+  header.classList.toggle('scrolled', scrollY > 80);
+  backTop.classList.toggle('show', scrollY > 80);
+  const hero = document.getElementById('hero');
+  if (hero && scrollY < window.innerHeight) hero.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+});
+
+// ====== ADMIN ======
+function openAdmin() {
+  document.getElementById('admin-overlay').classList.add('open');
+  document.getElementById('admin-login').style.display = 'block';
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('admin-footer').style.display = 'none';
+  document.getElementById('admin-password').value = '';
+  document.getElementById('admin-login-error').style.display = 'none';
+}
+function closeAdmin() { document.getElementById('admin-overlay').classList.remove('open'); }
+
+function adminLogin() {
+  if (document.getElementById('admin-password').value === 'bichitos2024') {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    document.getElementById('admin-footer').style.display = 'flex';
+    renderAdminPanel();
+  } else {
+    document.getElementById('admin-login-error').style.display = 'block';
+  }
+}
+
+function renderAdminPanel() {
+  document.getElementById('admin-panel').innerHTML = `
+    <div class="admin-section">
+      <h3>📝 Información general</h3>
+      <div class="admin-field"><label>Nombre de la tienda</label><input type="text" id="admin-store-name" value="${settings.storeName || 'BICHITOS Shop'}"></div>
+      <div class="admin-field"><label>Tagline / Eslogan</label><input type="text" id="admin-tagline" value="${settings.tagline || 'Dale a tu bichito lo que se merece'}"></div>
+      <div class="admin-field"><label>Logo emoji</label><input type="text" id="admin-logo-emoji" value="${settings.logoEmoji || '🐾'}" style="max-width:80px;"></div>
+    </div>
+    <div class="admin-section">
+      <h3>🎨 Colores</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="admin-field"><label>Primario (morado)</label><input type="color" id="admin-color-primary" value="${settings.colorPrimary || '#7C3AED'}"></div>
+        <div class="admin-field"><label>Secundario (oscuro)</label><input type="color" id="admin-color-deep" value="${settings.colorDeep || '#5B21B6'}"></div>
+        <div class="admin-field"><label>Claro (pálido)</label><input type="color" id="admin-color-light" value="${settings.colorLight || '#A78BFA'}"></div>
+        <div class="admin-field"><label>Acento (coral)</label><input type="color" id="admin-color-coral" value="${settings.colorCoral || '#FF6B6B'}"></div>
+      </div>
+    </div>
+    <div class="admin-section">
+      <h3>📸 Hero slides</h3>
+      ${[0,1,2].map(i => `
+        <div class="admin-field"><label>Slide ${i+1} - Tag</label><input type="text" id="admin-hero-tag-${i}" value="${settings['heroTag'+i] || document.getElementById('hero-tag-'+i)?.textContent?.trim() || ''}"></div>
+        <div class="admin-field"><label>Slide ${i+1} - Título</label><input type="text" id="admin-hero-title-${i}" value="${settings['heroTitle'+i] || document.getElementById('hero-title-'+i)?.textContent?.trim() || ''}"></div>
+        <div class="admin-field"><label>Slide ${i+1} - Subtítulo</label><input type="text" id="admin-hero-sub-${i}" value="${settings['heroSub'+i] || document.getElementById('hero-sub-'+i)?.textContent?.trim() || ''}"></div>
+        ${i < 2 ? '<hr style="border:none;border-top:1px solid var(--gray-light);margin:10px 0;">' : ''}
+      `).join('')}
+    </div>
+    <div class="admin-section">
+      <h3>📦 Productos</h3>
+      <p style="font-size:0.85rem;color:var(--gray);margin-bottom:12px;">Editá nombre y precio. Se guardan localmente.</p>
+      <div id="admin-products-list">${products.map(p =>
+        `<div class="admin-product-row">
+          <input class="admin-prod-name" type="text" value="${p.name}" data-id="${p.id}" data-field="name">
+          <input class="admin-prod-price" type="number" value="${p.price}" data-id="${p.id}" data-field="price">
+          <span style="font-size:0.75rem;color:var(--gray);min-width:50px;text-align:right;">stock:${p.stock}</span>
+        </div>`
+      ).join('')}</div>
+    </div>`;
+}
+
+function saveAdminSettings() {
+  settings.storeName = document.getElementById('admin-store-name')?.value || 'BICHITOS Shop';
+  settings.tagline = document.getElementById('admin-tagline')?.value || 'Dale a tu bichito lo que se merece';
+  settings.logoEmoji = document.getElementById('admin-logo-emoji')?.value || '🐾';
+  settings.colorPrimary = document.getElementById('admin-color-primary')?.value || '#7C3AED';
+  settings.colorDeep = document.getElementById('admin-color-deep')?.value || '#5B21B6';
+  settings.colorLight = document.getElementById('admin-color-light')?.value || '#A78BFA';
+  settings.colorCoral = document.getElementById('admin-color-coral')?.value || '#FF6B6B';
+  [0,1,2].forEach(i => {
+    settings['heroTag'+i] = document.getElementById('admin-hero-tag-'+i)?.value || '';
+    settings['heroTitle'+i] = document.getElementById('admin-hero-title-'+i)?.value || '';
+    settings['heroSub'+i] = document.getElementById('admin-hero-sub-'+i)?.value || '';
+  });
+  settings.products = [];
+  document.querySelectorAll('#admin-products-list .admin-product-row').forEach(row => {
+    const nameInput = row.querySelector('.admin-prod-name');
+    const priceInput = row.querySelector('.admin-prod-price');
+    if (nameInput && priceInput) settings.products.push({ id: Number(nameInput.dataset.id), name: nameInput.value, price: Number(priceInput.value) });
+  });
+  localStorage.setItem('bichitos_settings', JSON.stringify(settings));
+  applySettingsToDOM();
+  renderAll();
+  showToast('✅ Configuración guardada correctamente');
+  closeAdmin();
+}
+
+function applySettingsToDOM() {
+  if (settings.storeName) {
+    document.querySelectorAll('#store-name-header, #footer-store-name').forEach(el => el.textContent = settings.storeName);
+    document.title = settings.storeName;
+    const footerLogo = document.getElementById('footer-logo');
+    if (footerLogo) footerLogo.textContent = (settings.logoEmoji || '🐾') + ' ' + settings.storeName;
+  }
+  if (settings.logoEmoji) document.getElementById('logo-icon').textContent = settings.logoEmoji;
+  if (settings.colorPrimary) document.documentElement.style.setProperty('--purple-primary', settings.colorPrimary);
+  if (settings.colorDeep) document.documentElement.style.setProperty('--purple-deep', settings.colorDeep);
+  if (settings.colorLight) document.documentElement.style.setProperty('--purple-light', settings.colorLight);
+  if (settings.colorCoral) document.documentElement.style.setProperty('--coral', settings.colorCoral);
+  [0,1,2].forEach(i => {
+    const tagEl = document.getElementById('hero-tag-'+i);
+    const titleEl = document.getElementById('hero-title-'+i);
+    const subEl = document.getElementById('hero-sub-'+i);
+    if (tagEl && settings['heroTag'+i]) tagEl.textContent = settings['heroTag'+i];
+    if (titleEl && settings['heroTitle'+i]) titleEl.textContent = settings['heroTitle'+i];
+    if (subEl && settings['heroSub'+i]) subEl.textContent = settings['heroSub'+i];
+  });
+}
+
+// ====== KEYBOARD SHORTCUT ======
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); openAdmin(); }
+});
+
+// ====== INIT ======
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+  startSlider();
+  if (!localStorage.getItem('bichitos_cookies')) setTimeout(() => document.getElementById('cookies-bar').classList.add('show'), 1000);
+});
+</script>
+</body>
+</html>
